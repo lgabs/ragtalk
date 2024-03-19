@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  db:
+    image: pgvector/pgvector:pg15
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: rag-conversation
+      POSTGRES_PASSWORD: rag-conversation
+      POSTGRES_DB: rag-conversation
+    volumes:
+       - ./data/db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-d", "rag-conversation", "-U", "rag-conversation"]
+      interval: 10s
+      timeout: 5s
+      retries: 5

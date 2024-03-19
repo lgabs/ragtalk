@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "rag-conversation"
+version = "0.1.0"
+description = "Conversational Chatbot with RAG."
+authors = [
+    "Luan Fernadnes <luangabriel70@gmail.com>",
+]
+readme = "README.md"
+packages = [{include = "ragtalk", from = "src"}]
+
+[tool.poetry.dependencies]
+python = ">=3.8.1,<4.0"
+langchain = "^0.1"
+openai = "<2"
+tiktoken = ">=0.5.1"
+black = "^24.2.0"
+python-decouple = "^3.8"
+langserve = "^0.0.51"
+langsmith = "^0.1.26"
+
+[tool.black]
+line-length = 88
+
+# [tool.langserve]
+# export_module = "rag_conversation"
+# export_attr = "chain"
+
+[build-system]
+requires = [
+    "poetry-core",
+]
+build-backend = "poetry.core.masonry.api"
