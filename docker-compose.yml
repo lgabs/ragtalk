@@ -6,9 +6,9 @@ services:
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_USER: rag-conversation
-      POSTGRES_PASSWORD: rag-conversation
-      POSTGRES_DB: rag-conversation
+      POSTGRES_USER: ragtalk
+      POSTGRES_PASSWORD: ragtalk
+      POSTGRES_DB: ragtalk
     volumes:
        - ./data/db:/var/lib/postgresql/data
     healthcheck:
