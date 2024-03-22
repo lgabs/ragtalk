@@ -27,3 +27,4 @@ services:
       - .env
     volumes:
       - ./src:/app
+      - ./params.toml:/app/params.toml

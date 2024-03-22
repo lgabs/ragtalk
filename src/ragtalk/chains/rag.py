@@ -1,29 +1,17 @@
-import os
-from operator import itemgetter
-from typing import List, Tuple, TypedDict
-
-from langchain_community.chat_models import ChatOpenAI
-from langchain_community.embeddings import OpenAIEmbeddings
-from langchain_core.messages import AIMessage, HumanMessage
+from typing import TypedDict
+from ragtalk.settings import config
+from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import (
     ChatPromptTemplate,
     MessagesPlaceholder,
-    format_document,
 )
-from langchain_core.prompts.prompt import PromptTemplate
-from langchain_core.pydantic_v1 import BaseModel, Field
-from langchain_core.runnables import (
-    RunnableBranch,
-    RunnableLambda,
-    RunnableParallel,
-    RunnablePassthrough,
-)
+
 from langchain_core.runnables.history import RunnableWithMessageHistory
 
 from langchain.schema.runnable.utils import ConfigurableFieldSpec
 
-from memory import get_message_history
+from ragtalk.memory import get_message_history
 
 template = """You are a helpful assistant. Answer the question:"""
 prompt = ChatPromptTemplate.from_messages(
