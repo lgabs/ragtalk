@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "rag-conversation"
+name = "rag-talk"
 version = "0.1.0"
 description = "Conversational Chatbot with RAG."
 authors = [
@@ -14,14 +14,15 @@ langchain = "^0.1"
 openai = "<2"
 tiktoken = ">=0.5.1"
 black = "^24.2.0"
-python-decouple = "^3.8"
+langserve = "^0.0.51"
 langsmith = "^0.1.26"
-uvicorn = "^0.29.0"
 fastapi = "^0.110.0"
+uvicorn = {extras = ["standard"], version = "^0.29.0"}
+sse-starlette = "^2.0.0"
+pydantic-settings = "^2.2.1"
 langchain-openai = "^0.1.0"
-langchain-community = "^0.0.29"
-pydantic = "<2"
-langserve = {version = "^0.0.51", extras = ["server"]}
+psycopg = "^3.1.18"
+psycopg-binary = "^3.1.18"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.6.2"

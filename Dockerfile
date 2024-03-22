@@ -4,14 +4,14 @@ RUN pip install poetry==1.6.1
 
 RUN poetry config virtualenvs.create false
 
-COPY ./pyproject.toml ./poetry.lock* ./README.md ./
+WORKDIR /app
 
-RUN poetry install  --no-interaction --no-ansi --no-root
+COPY ./pyproject.toml ./README.md ./poetry.lock .
 
-COPY ./src/ ./src
+RUN poetry install --no-interaction --no-ansi --no-root
 
-RUN poetry install --no-interaction --no-ansi
+COPY ./src .
 
 EXPOSE 8080
 
-CMD exec uvicorn --app-dir=src/ragtalk app.server:app --host 0.0.0.0 --port 8080
+ENTRYPOINT uvicorn ragtalk.app.server:app --host 0.0.0.0 --port 8080
