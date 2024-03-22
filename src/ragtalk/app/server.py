@@ -23,6 +23,7 @@ app.add_middleware(
 async def redirect_root_to_docs():
     return RedirectResponse("/docs")
 
+
 # add `/invoke/`, `/batch/`, `/stream/` and several other default routes for runnables following LCEL
 add_routes(app, rag_chain_with_history, path="/chat")
 

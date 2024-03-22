@@ -24,11 +24,14 @@ prompt = ChatPromptTemplate.from_messages(
 
 
 chain = prompt | ChatOpenAI() | StrOutputParser()
+
+
 class InputChat(TypedDict):
     """Input for the chat endpoint."""
 
     human_input: str
     """Human input"""
+
 
 rag_chain_with_history = RunnableWithMessageHistory(
     chain,

@@ -9,7 +9,7 @@ readme = "README.md"
 packages = [{include = "ragtalk", from = "src"}]
 
 [tool.poetry.dependencies]
-python = ">=3.8.1,<4.0"
+python = ">=3.9,<4.0"
 langchain = "^0.1"
 openai = "<2"
 tiktoken = ">=0.5.1"
@@ -23,6 +23,9 @@ pydantic-settings = "^2.2.1"
 langchain-openai = "^0.1.0"
 psycopg = "^3.1.18"
 psycopg-binary = "^3.1.18"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^3.6.2"
 
 [tool.black]
 line-length = 88
