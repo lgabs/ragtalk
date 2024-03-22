@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "rag-conversation"
+name = "rag-talk"
 version = "0.1.0"
 description = "Conversational Chatbot with RAG."
 authors = [
@@ -17,13 +17,12 @@ black = "^24.2.0"
 python-decouple = "^3.8"
 langserve = "^0.0.51"
 langsmith = "^0.1.26"
+fastapi = "^0.110.0"
+uvicorn = {extras = ["standard"], version = "^0.29.0"}
+sse-starlette = "^2.0.0"
 
 [tool.black]
 line-length = 88
-
-# [tool.langserve]
-# export_module = "rag_conversation"
-# export_attr = "chain"
 
 [build-system]
 requires = [

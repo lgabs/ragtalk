@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from langserve import add_routes
 
-from chains.rag import chain
+from ragtalk.chains.rag import chain
 
 app = FastAPI()
 
