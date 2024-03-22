@@ -20,7 +20,7 @@ uvicorn = "^0.29.0"
 fastapi = "^0.110.0"
 langchain-openai = "^0.1.0"
 langchain-community = "^0.0.29"
-pydantic = "^2.6.4"
+pydantic = "<2"
 langserve = {version = "^0.0.51", extras = ["server"]}
 
 [tool.poetry.group.dev.dependencies]
