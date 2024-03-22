@@ -23,9 +23,10 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./:/app
-      - ./.empty:/app/data/db
-      - ./static:/app/static
+      - ./data:/data
+      - ./params.toml:/params.toml
+      - ./.empty:/data/db
+      - ./static:/static
     ports:
       - '8000:8000'
     depends_on:
@@ -33,6 +34,6 @@ services:
         condition: service_healthy
     environment:
       - DATABASE_URL=postgresql://ragtalk:ragtalk@db:5432/ragtalk
-      - STATIC_FILE_LOCATION=/app/static
+      - STATIC_FILE_LOCATION=./static
     env_file:
       - .env
