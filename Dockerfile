@@ -4,15 +4,13 @@ RUN pip install poetry==1.6.1
 
 RUN poetry config virtualenvs.create false
 
-WORKDIR /code
+WORKDIR /app
 
-COPY ./pyproject.toml ./README.md ./poetry.lock* ./
-
-COPY ./package[s] ./packages
+COPY ./pyproject.toml ./poetry.lock* ./README.md /app/
 
 RUN poetry install  --no-interaction --no-ansi --no-root
 
-COPY ./app ./app
+COPY ./src/ /app/src
 
 RUN poetry install --no-interaction --no-ansi
 

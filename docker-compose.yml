@@ -12,7 +12,27 @@ services:
     volumes:
        - ./data/db:/var/lib/postgresql/data
     healthcheck:
-      test: ["CMD", "pg_isready", "-d", "rag-conversation", "-U", "rag-conversation"]
+      test: ["CMD", "pg_isready", "-d", "ragtalk", "-U", "ragtalk"]
       interval: 10s
       timeout: 5s
       retries: 5
+  ragtalk:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/app
+      - ./.empty:/app/data/db
+      - ./static:/app/static
+    ports:
+      - '8000:8000'
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DATABASE_URL=postgresql://ragtalk:ragtalk@db:5432/ragtalk
+      - STATIC_FILE_LOCATION=/app/static
+    env_file:
+      - .env
