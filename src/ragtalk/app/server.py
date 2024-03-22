@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from langserve import add_routes
 
-from ragtalk.chains.rag import chain
+from ragtalk.chains.rag import rag_chain_with_history
 
 app = FastAPI()
 
@@ -24,7 +24,7 @@ async def redirect_root_to_docs():
     return RedirectResponse("/docs")
 
 # add `/invoke/`, `/batch/`, `/stream/` and several other default routes for runnables following LCEL
-add_routes(app, chain, path="/chat")
+add_routes(app, rag_chain_with_history, path="/chat")
 
 if __name__ == "__main__":
     import uvicorn
