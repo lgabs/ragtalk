@@ -13,10 +13,12 @@ from langchain.schema.runnable.utils import ConfigurableFieldSpec
 
 from ragtalk.memory import get_message_history
 
-template = """You are a helpful assistant. Answer the question:"""
+from ragtalk.settings import chain_params
+
+prompt_template = chain_params.get("llm").get("prompt_template")
 prompt = ChatPromptTemplate.from_messages(
     [
-        ("system", template),
+        ("system", prompt_template),
         MessagesPlaceholder(variable_name="history", optional=True),
         ("user", "{human_input}"),
     ]
@@ -38,14 +40,4 @@ rag_chain_with_history = RunnableWithMessageHistory(
     get_message_history,
     input_messages_key="human_input",
     history_messages_key="history",
-    history_factory_config=[
-        ConfigurableFieldSpec(
-            id="session_id",
-            annotation=str,
-            name="Session ID",
-            description="Unique identifier for the conversation.",
-            default="",
-            is_shared=True,
-        ),
-    ],
 ).with_types(input_type=InputChat)

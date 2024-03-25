@@ -13,4 +13,4 @@ class Settings(BaseSettings):
 config = Settings.model_validate({})
 
 with open(config.params_path, "rb") as file:
-    toml_data = tomllib.load(file)
+    chain_params = tomllib.load(file)
