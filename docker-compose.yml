@@ -28,3 +28,4 @@ services:
     volumes:
       - ./src:/app
       - ./params.toml:/app/params.toml
+      - /data:/app/data
