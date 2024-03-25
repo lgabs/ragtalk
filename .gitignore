@@ -1,6 +1,7 @@
 */db/
 .python-version
 .vscode/
+params.toml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
