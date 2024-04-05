@@ -1,6 +1,10 @@
 */db/
 .python-version
 .vscode/
+/data/*
+/examples/qa_example.csv
+params.toml
+**/params.toml
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
