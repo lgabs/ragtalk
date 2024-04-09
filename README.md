@@ -3,14 +3,14 @@ ragtalk is a Q&amp;A Chatbot with LLM, made with Langchain and LangServe.
 
 ## TODOs
 
-- [ ] Update this readme with project idea and main components
+- [x] Update this readme with project idea and main components
 - [x] Add docker compose with services for db (postgrest with pgvector) and api
 - [x] Add memory
 - [x] Add example dataset helpers
 - [ ] Add dataset (csv) loader and embedd into the vectordb
 - [ ] Add retriever with pgvector
 - [ ] Add basic unit tests
-- [ ] Add support to evaluate answers (e.g [deepeval](https://github.com/confident-ai/deepeval))
+- [ ] Add support to evaluate LLM answers (e.g [deepeval](https://github.com/confident-ai/deepeval))
 
 # Example files
 
