@@ -1,6 +1,6 @@
 services:
   db:
-    image: pgvector/pgvector:pg15
+    image: pgvector/pgvector:pg16
     restart: always
     ports:
       - '5432:5432'
@@ -19,7 +19,7 @@ services:
   api:
     build: .
     ports:
-      - '3000:8080'
+      - '8080:8080'
     depends_on:
       db:
         condition: service_healthy
@@ -27,5 +27,5 @@ services:
       - .env
     volumes:
       - ./src:/app
-      - ./params.toml:/app/params.toml
-      - /data:/app/data
+      - ./data:/app/data
+      - ./etc:/app/etc

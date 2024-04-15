@@ -11,7 +11,12 @@ COPY ./pyproject.toml ./README.md ./poetry.lock .
 RUN poetry install --no-interaction --no-ansi --no-root
 
 COPY ./src .
+COPY /etc /app/etc
+RUN chmod +x /app/etc/run.sh
 
 EXPOSE 8080
 
-ENTRYPOINT uvicorn ragtalk.app.server:app --host 0.0.0.0 --port 8080
+ENV PYTHONPATH="/app:$PYTHONPATH"
+
+CMD /app/etc/run.sh
+
