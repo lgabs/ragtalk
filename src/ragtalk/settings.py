@@ -1,17 +1,35 @@
 import tomllib
 from pydantic_settings import BaseSettings
-from pydantic import PostgresDsn, FilePath, SecretStr, Field
+from pydantic import PostgresDsn, FilePath, SecretStr, Field, computed_field
 
 
 class Settings(BaseSettings):
     environment: str
-    database_url: PostgresDsn
+    logging_level: str = Field(default="INFO")
+
+
+class ChainSettings(BaseSettings):
     params_path: FilePath = Field(default="/data/params.toml")
     openai_api_key: SecretStr
+
+    @computed_field
+    def chain_params(self) -> dict:
+        with open(self.params_path, "rb") as file:
+            return tomllib.load(file)
+
+
+class MemorySettings(BaseSettings):
+    connection: PostgresDsn
+    collection_name: str
+
+
+class VectordbSettings(BaseSettings):
+    connection: PostgresDsn
+    collection_name: str
     knowledge_base_path: FilePath = Field(default="./data/knowledge_base.csv")
 
 
-config = Settings()
-
-with open(config.params_path, "rb") as file:
-    chain_params = tomllib.load(file)
+settings = Settings()
+chain_settings = ChainSettings(_env_file=".env", _env_file_encoding="utf-8")
+memory_settings = MemorySettings(_env_file=".env", _env_file_encoding="utf-8")
+vectordb_settings = VectordbSettings(_env_file=".env", _env_file_encoding="utf-8")
