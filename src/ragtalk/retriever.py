@@ -1,8 +1,13 @@
 from langchain.schema import format_document
 from langchain.prompts.prompt import PromptTemplate
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings
+from langchain_postgres import PGVector
+
+from ragtalk.settings import vectordb_settings
 
 DEFAULT_DOCUMENT_PROMPT = PromptTemplate.from_template(template="{page_content}")
+CONNECTION = str(vectordb_settings.connection)
+COLLECTION_NAME = vectordb_settings.collection_name
 
 
 def combine_documents(
@@ -14,8 +19,8 @@ def combine_documents(
 
 
 def get_retriever():
-    pass
-    # vectorstore = FAISS.from_texts(
-    #     ["harrison worked at kensho"], embedding=OpenAIEmbeddings()
-    # )
-    # return vectorstore.as_retriever()
+    return PGVector(
+        collection_name=COLLECTION_NAME,
+        connection=CONNECTION,
+        embeddings=OpenAIEmbeddings(),
+    ).as_retriever()
